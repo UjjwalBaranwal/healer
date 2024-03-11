@@ -4,6 +4,8 @@ const express = require("express");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const globalErrorHandler = require("./controllers/errorController");
+const userRouter = require("./routes/userRoutes");
+const doctorRouter = require("./routes/doctorRoutes");
 const AppError = require("./utils/appError");
 const app = express();
 //security middleware
@@ -27,7 +29,8 @@ app.use((req, res, next) => {
   next();
 });
 //////////////////////////////////////////////////////////////////////
-
+app.use("/api/v1/users", userRouter);
+// app.use("/api/v1/doctors", doctorRouter);
 app.all("*", (req, res, next) => {
   next(new AppError(`can't find the ${req.originalUrl}`, 404));
 });

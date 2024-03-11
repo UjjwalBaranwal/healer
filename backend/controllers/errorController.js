@@ -4,6 +4,7 @@ const handleCastErrorDB = (err) => {
   return new AppError(msg, 400);
 };
 const handleDuplicateNameErrorDB = (err) => {
+  console.log(err);
   const key = Object.keys(err.keyValue).join("");
   const msg = `The key '${key}' has duplicate value of '${err.keyValue[key]}'`;
   return new AppError(msg, 400);
